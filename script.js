@@ -77,7 +77,7 @@ function draw() {
 
     drawPlayerOne();
     drawPlayerTwo();
-    collisionDetection();
+    betterCollision();
     drawBall();
     
 
@@ -135,14 +135,45 @@ function keyDownHandler(e) {
 //     }
 // }
 
-function collisionDetection() {
-    if (
-        (
-            (x == paddleOneX + paddleWidth) && 
-            (y > paddleOneY && y < paddleOneY + (paddleHeight))
-            )
-            )
-         {
+// function collisionDetection() {
+//     if (
+//         (
+//             (x == paddleOneX + paddleWidth) && 
+//             (y > paddleOneY && y < paddleOneY + (paddleHeight))
+//             )
+//             )
+//          {
+//             if (y < paddleOneY + (0.25 *paddleHeight)) {
+//                 dy += 0.5;
+//             } else if (y > paddleOneY + (paddleHeight - (0.25 *paddleHeight))) {
+//                 dy -= 0.5;
+//             }
+//             dx = -dx;
+//         }
+    
+//     if (
+//         (
+//             (x == paddleTwoX) && 
+//             (y > paddleTwoY && y < paddleTwoY + (paddleHeight))
+//             )
+//             )
+//          {
+//             if (y < paddleTwoY + (0.25 *paddleHeight)) {
+//                 dy += 0.5;
+//             } else if (y > paddleTwoY + (paddleHeight - (0.25 *paddleHeight))) {
+//                 dy -= 0.5;
+//             }
+//             dx = -dx;
+//         }
+    
+//     if (y < 0 || y > canvas.height) {
+//         dy = -dy;
+//     }
+// }
+
+function betterCollision() {
+    if (x == paddleOneX + paddleWidth) {
+        if (y > paddleOneY && y < paddleOneY + (paddleHeight)) {
             if (y < paddleOneY + (0.25 *paddleHeight)) {
                 dy += 0.5;
             } else if (y > paddleOneY + (paddleHeight - (0.25 *paddleHeight))) {
@@ -150,14 +181,10 @@ function collisionDetection() {
             }
             dx = -dx;
         }
-    
-    if (
-        (
-            (x == paddleTwoX) && 
-            (y > paddleTwoY && y < paddleTwoY + (paddleHeight))
-            )
-            )
-         {
+    }
+
+    if (x == paddleTwoX) {
+        if (y > paddleTwoY && y < paddleTwoY + (paddleHeight)) {
             if (y < paddleTwoY + (0.25 *paddleHeight)) {
                 dy += 0.5;
             } else if (y > paddleTwoY + (paddleHeight - (0.25 *paddleHeight))) {
@@ -165,6 +192,7 @@ function collisionDetection() {
             }
             dx = -dx;
         }
+    }
     
     if (y < 0 || y > canvas.height) {
         dy = -dy;
